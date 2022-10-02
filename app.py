@@ -19,7 +19,7 @@ conn.close()
 
 # ================= 여기서부터는 다시 Flask 영역 ==========================
 
-@app.route('/')
+@app.route('/board')
 def board():
     con = sqlite3.connect("database.db")
     cur = con.cursor()
@@ -30,6 +30,10 @@ def board():
     for i in range(len(rows)):
         print(rows[i][0] + ':' + rows[i][1])
     return render_template("board1.html", rows = rows)
+
+@app.route('/')
+def home():
+    return render_template("main.html")
 
 
 @app.route("/search", methods=["GET","POST"])
